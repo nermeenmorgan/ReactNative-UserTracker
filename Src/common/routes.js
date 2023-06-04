@@ -1,6 +1,6 @@
 const routes=Object.freeze({
-    home:"home",
-    todo:"TodoPage",
+        users: "Users",
+        details: "Details",
 
 })
 // routes.home="profile"
