@@ -1,13 +1,17 @@
-
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer } from '@react-navigation/native';
 import { NativeBaseProvider } from 'native-base';
-import Root from "./Src/Navigation/root";
+import Root from './Src/Navigation/root';
 import * as Font from 'expo-font';
-import  { useEffect, useState } from 'react';
-import ThemeProvider from "./Src/ThemeContext.js/themeContext";
+import { useEffect} from 'react';
+import ThemeProvider from './Src/ThemeContext.js/themeContext';
+import { LogBox } from 'react-native';
 
 export default function App() {
- 
+  console.disableYellowBox = true;
+console.warn = () => {};
+console.error = () => {};
+LogBox.ignoreAllLogs(true);
+
   async function loadFonts() {
     await Font.loadAsync({
       'PlayfairDisplay-Bold': require('./assets/fonts/PlayfairDisplay-Bold.ttf'),
@@ -20,17 +24,14 @@ export default function App() {
   useEffect(() => {
     loadFonts();
   }, []);
- 
+
   return (
     <ThemeProvider>
-    <NativeBaseProvider>
-    <NavigationContainer>
-   <Root></Root>
-    </NavigationContainer>
-    </NativeBaseProvider>
+      <NativeBaseProvider>
+        <NavigationContainer>
+          <Root></Root>
+        </NavigationContainer>
+      </NativeBaseProvider>
     </ThemeProvider>
-  );
+  );
 }
-
-
-
